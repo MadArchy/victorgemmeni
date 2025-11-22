@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Centro de Control - GLAMOUR NYM</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        padding: 40px 20px;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      header {
+        text-align: center;
+        color: white;
+        margin-bottom: 50px;
+      }
+
+      header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      header p {
+        font-size: 1.1rem;
+        opacity: 0.9;
+      }
+
+      .grilla {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 25px;
+        margin-bottom: 40px;
+      }
+
+      .tarjeta {
+        background: white;
+        border-radius: 12px;
+        padding: 30px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border-left: 5px solid #667eea;
+      }
+
+      .tarjeta:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+      }
+
+      .tarjeta.facturacion {
+        border-left-color: #27ae60;
+      }
+
+      .tarjeta.prueba {
+        border-left-color: #f39c12;
+      }
+
+      .tarjeta.doc {
+        border-left-color: #e74c3c;
+      }
+
+      .tarjeta h2 {
+        color: #333;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .tarjeta p {
+        color: #666;
+        line-height: 1.6;
+        margin-bottom: 20px;
+        font-size: 0.95rem;
+      }
+
+      .botones {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .boton {
+        display: inline-block;
+        padding: 12px 20px;
+        background: #667eea;
+        color: white;
+        text-decoration: none;
+        border-radius: 6px;
+        text-align: center;
+        transition: background 0.3s ease;
+        border: none;
+        cursor: pointer;
+        font-size: 0.95rem;
+        font-weight: 600;
+      }
+
+      .boton:hover {
+        background: #5568d3;
+      }
+
+      .boton.primario {
+        background: #27ae60;
+      }
+
+      .boton.primario:hover {
+        background: #229954;
+      }
+
+      .boton.secundario {
+        background: #e74c3c;
+      }
+
+      .boton.secundario:hover {
+        background: #c0392b;
+      }
+
+      .boton.terciario {
+        background: #f39c12;
+      }
+
+      .boton.terciario:hover {
+        background: #d68910;
+      }
+
+      .seccion-acciones {
+        background: white;
+        border-radius: 12px;
+        padding: 30px;
+        margin-bottom: 40px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .seccion-acciones h2 {
+        color: #333;
+        margin-bottom: 20px;
+        border-bottom: 3px solid #667eea;
+        padding-bottom: 10px;
+      }
+
+      .pasos {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin-bottom: 20px;
+      }
+
+      .paso {
+        background: #f8f9fa;
+        padding: 20px;
+        border-radius: 8px;
+        border-left: 4px solid #667eea;
+      }
+
+      .paso-numero {
+        display: inline-block;
+        background: #667eea;
+        color: white;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 35px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .paso h3 {
+        color: #333;
+        margin-bottom: 8px;
+        margin-top: 0;
+      }
+
+      .paso p {
+        color: #666;
+        font-size: 0.9rem;
+        line-height: 1.5;
+        margin: 0;
+      }
+
+      .lista-archivos {
+        background: #f8f9fa;
+        padding: 20px;
+        border-radius: 8px;
+        margin-top: 20px;
+      }
+
+      .lista-archivos h3 {
+        color: #333;
+        margin-bottom: 15px;
+      }
+
+      .archivo {
+        padding: 10px;
+        background: white;
+        margin-bottom: 8px;
+        border-radius: 4px;
+        border-left: 3px solid #667eea;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .archivo-nombre {
+        font-family: "Courier New", monospace;
+        color: #333;
+        font-weight: 600;
+      }
+
+      .archivo-desc {
+        color: #999;
+        font-size: 0.85rem;
+      }
+
+      .destacado {
+        background: #fff3cd;
+        border-left-color: #ffc107;
+      }
+
+      footer {
+        text-align: center;
+        color: white;
+        margin-top: 50px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        font-size: 0.9rem;
+      }
+
+      .emoji {
+        font-size: 1.3em;
+      }
+
+      @media (max-width: 768px) {
+        header h1 {
+          font-size: 1.8rem;
+        }
+
+        .grilla {
+          grid-template-columns: 1fr;
+        }
+
+        .pasos {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .banner-exito {
+        background: linear-gradient(135deg, #27ae60, #229954);
+        color: white;
+        padding: 20px;
+        border-radius: 12px;
+        margin-bottom: 30px;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .banner-exito h2 {
+        margin: 0;
+        font-size: 1.5rem;
+      }
+
+      .banner-exito p {
+        margin: 10px 0 0 0;
+        opacity: 0.95;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>🎯 Centro de Control GLAMOUR NYM</h1>
+        <p>Sistema de Facturación Electrónica - Documentación y Pruebas</p>
+      </header>
+
+      <div class="banner-exito">
+        <h2>✅ Sistema Implementado Exitosamente</h2>
+        <p>
+          Tu tienda ahora genera facturas electrónicas automáticamente cuando
+          los clientes compran
+        </p>
+      </div>
+
+      <!-- SECCIÓN: ACCIONES PRINCIPALES -->
+      <div class="seccion-acciones">
+        <h2>🚀 Comienza Aquí - 3 Pasos</h2>
+        <div class="pasos">
+          <div class="paso">
+            <div class="paso-numero">1</div>
+            <h3>Lee la Guía Rápida</h3>
+            <p>
+              Entiende cómo funciona el sistema de facturación en solo 3
+              minutos.
+            </p>
+          </div>
+          <div class="paso">
+            <div class="paso-numero">2</div>
+            <h3>Prueba el Sistema</h3>
+            <p>
+              Abre test-facturacion.html y genera facturas de ejemplo para ver
+              cómo funciona.
+            </p>
+          </div>
+          <div class="paso">
+            <div class="paso-numero">3</div>
+            <h3>Personaliza tu Tienda</h3>
+            <p>
+              Edita facturacion.js con tus datos: nombre, dirección, teléfono,
+              etc.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- TARJETAS PRINCIPALES -->
+      <div class="grilla">
+        <!-- TARJETA 1: FACTURACIÓN -->
+        <div class="tarjeta facturacion">
+          <h2><span class="emoji">📋</span> Sistema de Facturación</h2>
+          <p>
+            Tu nuevo sistema de facturación electrónica está activo y listo para
+            usar. Genera facturas automáticamente cuando los clientes presionan
+            "Proceder a Pagar".
+          </p>
+          <div class="botones">
+            <a href="#facturacion" class="boton primario">ℹ️ Más Información</a>
+          </div>
+        </div>
+
+        <!-- TARJETA 2: PRUEBAS -->
+        <div class="tarjeta prueba">
+          <h2><span class="emoji">🧪</span> Página de Pruebas</h2>
+          <p>
+            Prueba el sistema sin hacer una compra real. Genera facturas de
+            ejemplo, ve el historial y prueba la impresión.
+          </p>
+          <div class="botones">
+            <a
+              href="test-facturacion.html"
+              class="boton terciario"
+              target="_blank"
+              >🔗 Abrir test-facturacion.html</a
+            >
+          </div>
+        </div>
+
+        <!-- TARJETA 3: DOCUMENTACIÓN -->
+        <div class="tarjeta doc">
+          <h2><span class="emoji">📚</span> Documentación</h2>
+          <p>
+            Documentación completa, guías de uso, personalización y solución de
+            problemas.
+          </p>
+          <div class="botones">
+            <a href="INICIO_RAPIDO.md" class="boton secundario" download
+              >📥 Inicio Rápido</a
+            >
+            <a
+              href="docs/FACTURACION_ELECTRONICA.md"
+              class="boton secundario"
+              download
+              >📖 Documentación Completa</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- SECCIÓN: FLUJO DE COMPRA -->
+      <div class="seccion-acciones">
+        <h2>🔄 Flujo de Compra Completo</h2>
+        <p style="color: #666; margin-bottom: 20px">
+          Así es cómo funciona cuando un cliente hace una compra:
+        </p>
+        <div class="pasos">
+          <div class="paso">
+            <div class="paso-numero">1</div>
+            <h3>Cliente Agrega Productos</h3>
+            <p>Abre catalogo.html y selecciona productos con sus tallas.</p>
+          </div>
+          <div class="paso">
+            <div class="paso-numero">2</div>
+            <h3>Va al Carrito</h3>
+            <p>Abre carrito.html para revisar productos y totales.</p>
+          </div>
+          <div class="paso">
+            <div class="paso-numero">3</div>
+            <h3>Presiona "Proceder al Pago"</h3>
+            <p>Se abre automáticamente la factura electrónica.</p>
+          </div>
+          <div class="paso">
+            <div class="paso-numero">4</div>
+            <h3>Imprime o Guarda PDF</h3>
+            <p>
+              Cliente imprime directamente o la guarda como PDF en su
+              computadora.
+            </p>
+          </div>
+          <div class="paso">
+            <div class="paso-numero">5</div>
+            <h3>Compra Completada ✅</h3>
+            <p>Carrito se vacía y factura se guarda en el historial.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECCIÓN: ARCHIVOS IMPORTANTES -->
+      <div class="seccion-acciones">
+        <h2>📁 Archivos Creados y Cómo Usarlos</h2>
+
+        <h3
+          style="
+            margin-top: 25px;
+            color: #333;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+          "
+        >
+          ✨ Archivos Nuevos (Creados para ti)
+        </h3>
+        <div class="lista-archivos">
+          <div class="archivo destacado">
+            <div>
+              <div class="archivo-nombre">facturacion.js</div>
+              <div class="archivo-desc">
+                Lógica principal del sistema (500+ líneas)
+              </div>
+            </div>
+            <span>🔧 PRINCIPAL</span>
+          </div>
+          <div class="archivo">
+            <div>
+              <div class="archivo-nombre">test-facturacion.html</div>
+              <div class="archivo-desc">
+                Página para probar facturas sin hacer compras reales
+              </div>
+            </div>
+            <span>🧪 PRUEBAS</span>
+          </div>
+          <div class="archivo">
+            <div>
+              <div class="archivo-nombre">INICIO_RAPIDO.md</div>
+              <div class="archivo-desc">Guía de 3 minutos para empezar</div>
+            </div>
+            <span>⚡ LEER PRIMERO</span>
+          </div>
+          <div class="archivo">
+            <div>
+              <div class="archivo-nombre">docs/FACTURACION_ELECTRONICA.md</div>
+              <div class="archivo-desc">Documentación completa y detallada</div>
+            </div>
+            <span>📖 REFERENCIA</span>
+          </div>
+          <div class="archivo">
+            <div>
+              <div class="archivo-nombre">docs/CAMBIOS_FACTURACION.md</div>
+              <div class="archivo-desc">
+                Resumen técnico de todos los cambios
+              </div>
+            </div>
+            <span>🔍 TÉCNICO</span>
+          </div>
+          <div class="archivo">
+            <div>
+              <div class="archivo-nombre">RESUMEN_IMPLEMENTACION.txt</div>
+              <div class="archivo-desc">
+                Resumen visual completo (este archivo)
+              </div>
+            </div>
+            <span>✅ RESUMEN</span>
+          </div>
+        </div>
+
+        <h3
+          style="
+            margin-top: 25px;
+            color: #333;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+          "
+        >
+          🔗 Archivos Existentes (Modificados/Usados)
+        </h3>
+        <div class="lista-archivos">
+          <div class="archivo">
+            <div>
+              <div class="archivo-nombre">carrito.html</div>
+              <div class="archivo-desc">
+                Incluye script facturacion.js automáticamente
+              </div>
+            </div>
+            <span>✅ LISTO</span>
+          </div>
+          <div class="archivo">
+            <div>
+              <div class="archivo-nombre">carrito-unificado.js</div>
+              <div class="archivo-desc">
+                Llama a generarFactura() en procederAlPago()
+              </div>
+            </div>
+            <span>✅ LISTO</span>
+          </div>
+          <div class="archivo">
+            <div>
+              <div class="archivo-nombre">catalogo.html</div>
+              <div class="archivo-desc">
+                Permite agregar productos al carrito
+              </div>
+            </div>
+            <span>✅ COMPATIBLE</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECCIÓN: PERSONALIZACIÓN -->
+      <div class="seccion-acciones" id="facturacion">
+        <h2>🎨 Personalización - Cambiar Datos de tu Tienda</h2>
+        <p style="color: #666; margin-bottom: 20px">
+          ¿Quieres cambiar el nombre, dirección o datos de tu tienda en las
+          facturas?
+        </p>
+
+        <div
+          style="
+            background: #f0f7ff;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+          "
+        >
+          <h3 style="color: #333; margin-top: 0">
+            📝 Pasos para Personalizar:
+          </h3>
+          <ol style="color: #666; line-height: 2; padding-left: 20px">
+            <li>
+              <strong>Abre:</strong> facturacion.js en tu editor de código
+            </li>
+            <li><strong>Busca:</strong> la línea que dice "GLAMOUR NYM"</li>
+            <li><strong>Cambia a:</strong> Tu nombre de tienda</li>
+            <li>
+              <strong>También cambia:</strong> Dirección, teléfono, email, NIT
+            </li>
+            <li><strong>Guarda</strong> el archivo</li>
+            <li>
+              <strong>Recarga</strong> las páginas en el navegador (Ctrl+F5)
+            </li>
+          </ol>
+        </div>
+
+        <div
+          style="
+            background: #fff3cd;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #ffc107;
+            margin-top: 20px;
+          "
+        >
+          <h3 style="color: #333; margin-top: 0">💡 También puedes cambiar:</h3>
+          <ul style="color: #666; line-height: 2; padding-left: 20px">
+            <li>
+              <strong>Política de envío:</strong> Función calcularEnvio() en
+              facturacion.js
+            </li>
+            <li>
+              <strong>Colores:</strong> Variables CSS en los estilos de la
+              factura
+            </li>
+            <li>
+              <strong>Mensaje de agradecimiento:</strong> Pie de página de la
+              factura
+            </li>
+            <li><strong>Formato de factura:</strong> Tabla y layout HTML</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- SECCIÓN: CARACTERÍSTICAS -->
+      <div class="seccion-acciones">
+        <h2>✨ Características del Sistema</h2>
+        <div
+          style="
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+          "
+        >
+          <div style="background: #f8f9fa; padding: 20px; border-radius: 8px">
+            <h3 style="color: #667eea; margin-top: 0">
+              📋 Factura Profesional
+            </h3>
+            <p style="color: #666; margin: 0">
+              Diseño elegante y profesional, optimizado para impresión en A4.
+            </p>
+          </div>
+          <div style="background: #f8f9fa; padding: 20px; border-radius: 8px">
+            <h3 style="color: #27ae60; margin-top: 0">🔒 Segura</h3>
+            <p style="color: #666; margin: 0">
+              Prevención de inyección de código, validación de datos.
+            </p>
+          </div>
+          <div style="background: #f8f9fa; padding: 20px; border-radius: 8px">
+            <h3 style="color: #e74c3c; margin-top: 0">💾 Historial Local</h3>
+            <p style="color: #666; margin: 0">
+              Se guardan automáticamente en navegador, sin servidor.
+            </p>
+          </div>
+          <div style="background: #f8f9fa; padding: 20px; border-radius: 8px">
+            <h3 style="color: #f39c12; margin-top: 0">📱 QR Automático</h3>
+            <p style="color: #666; margin: 0">
+              Código QR generado automáticamente con número de factura.
+            </p>
+          </div>
+          <div style="background: #f8f9fa; padding: 20px; border-radius: 8px">
+            <h3 style="color: #3498db; margin-top: 0">🖨️ Fácil de Imprimir</h3>
+            <p style="color: #666; margin: 0">
+              Diálogo de impresión automático, guardar como PDF.
+            </p>
+          </div>
+          <div style="background: #f8f9fa; padding: 20px; border-radius: 8px">
+            <h3 style="color: #9b59b6; margin-top: 0">⚡ Rápido</h3>
+            <p style="color: #666; margin: 0">
+              Generación en menos de 100ms, sin dependencias.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECCIÓN: SOPORTE RÁPIDO -->
+      <div class="seccion-acciones">
+        <h2>🆘 Solución Rápida de Problemas</h2>
+        <div style="display: grid; grid-template-columns: 1fr; gap: 15px">
+          <div
+            style="
+              background: #ffe6e6;
+              padding: 15px;
+              border-radius: 8px;
+              border-left: 4px solid #e74c3c;
+            "
+          >
+            <strong style="color: #c0392b"
+              >❌ "No se abre la ventana de factura"</strong
+            >
+            <p style="margin: 10px 0 0 0; color: #666">
+              Desactiva tu bloqueador de popups para este sitio.
+            </p>
+          </div>
+          <div
+            style="
+              background: #fff3cd;
+              padding: 15px;
+              border-radius: 8px;
+              border-left: 4px solid #f39c12;
+            "
+          >
+            <strong style="color: #d68910"
+              >❌ "Función generarFactura no está definida"</strong
+            >
+            <p style="margin: 10px 0 0 0; color: #666">
+              Verifica que carrito.html incluya: &lt;script src="facturacion.js"
+              defer&gt;&lt;/script&gt;
+            </p>
+          </div>
+          <div
+            style="
+              background: #e3f2fd;
+              padding: 15px;
+              border-radius: 8px;
+              border-left: 4px solid #3498db;
+            "
+          >
+            <strong style="color: #2980b9">❌ "localStorage está lleno"</strong>
+            <p style="margin: 10px 0 0 0; color: #666">
+              En consola (F12), ejecuta: limpiarFacturasAntiguas()
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECCIÓN: PRÓXIMOS PASOS -->
+      <div class="seccion-acciones">
+        <h2>🎯 Próximos Pasos Recomendados</h2>
+        <div
+          style="
+            background: #e8f5e9;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #27ae60;
+          "
+        >
+          <h3 style="color: #229954; margin-top: 0">
+            HOY (Primeros 15 minutos):
+          </h3>
+          <ul style="color: #666; line-height: 2; padding-left: 20px">
+            <li>☐ Abre <strong>test-facturacion.html</strong> en navegador</li>
+            <li>☐ Presiona "Generar Factura Simple"</li>
+            <li>☐ Prueba guardarla como PDF (Ctrl+P)</li>
+            <li>☐ Lee <strong>INICIO_RAPIDO.md</strong></li>
+          </ul>
+        </div>
+
+        <div
+          style="
+            background: #f3e5f5;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #9b59b6;
+            margin-top: 20px;
+          "
+        >
+          <h3 style="color: #7d3c98; margin-top: 0">ESTA SEMANA:</h3>
+          <ul style="color: #666; line-height: 2; padding-left: 20px">
+            <li>
+              ☐ Personaliza datos de tu tienda en
+              <strong>facturacion.js</strong>
+            </li>
+            <li>☐ Ajusta política de envío según tu empresa</li>
+            <li>☐ Prueba el carrito completo (catalogo → carrito → factura)</li>
+            <li>☐ Genera varias facturas y verifica historial</li>
+          </ul>
+        </div>
+
+        <div
+          style="
+            background: #fff3e0;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #f39c12;
+            margin-top: 20px;
+          "
+        >
+          <h3 style="color: #d68910; margin-top: 0">PRÓXIMA SEMANA:</h3>
+          <ul style="color: #666; line-height: 2; padding-left: 20px">
+            <li>
+              ☐ Prueba en navegadores diferentes (Chrome, Firefox, Safari)
+            </li>
+            <li>☐ Intenta imprimir en diferentes impresoras</li>
+            <li>☐ Pide feedback de clientes</li>
+            <li>☐ Considera mejoras futuras (email, DIAN, etc.)</li>
+          </ul>
+        </div>
+      </div>
+
+      <footer>
+        <p>
+          🎉 <strong>¡Felicidades!</strong> Tu sistema de facturación
+          electrónica está activo y listo para usar.
+        </p>
+        <p>Creado: 19 de noviembre, 2025 | GLAMOUR NYM © 2025</p>
+      </footer>
+    </div>
+  </body>
+</html>

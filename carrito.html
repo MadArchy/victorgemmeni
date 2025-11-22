@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carrito de Compras - GLAMOUR NYM</title>
+    <link rel="icon" href="img/Logo.jpeg" type="image/x-icon" />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* Estilos específicos para la página de carrito */
+      .carrito-vacio-hidden {
+        display: none;
+      }
+
+      .carrito-container {
+        max-width: 1000px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+      }
+
+      .carrito-vacio {
+        text-align: center;
+        padding: 3rem 1rem;
+        background-color: var(--color-surface);
+        border-radius: 8px;
+        margin: 2rem 0;
+      }
+
+      .carrito-vacio h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .carrito-vacio p {
+        color: var(--color-muted);
+        margin-bottom: 1.5rem;
+      }
+
+      .tabla-carrito {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        margin: 2rem 0;
+      }
+
+      .tabla-carrito thead {
+        background-color: var(--color-primary-900);
+        color: white;
+      }
+
+      .tabla-carrito th {
+        padding: 1rem;
+        text-align: left;
+        font-weight: 600;
+      }
+
+      .tabla-carrito td {
+        padding: 1rem;
+        border-bottom: 1px solid var(--color-border);
+      }
+
+      .tabla-carrito tbody tr:hover {
+        background-color: var(--color-surface);
+      }
+
+      .tabla-carrito .btn-eliminar {
+        background-color: #dc2626;
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        transition: background-color 0.3s ease;
+      }
+
+      .tabla-carrito .btn-eliminar:hover {
+        background-color: #b91c1c;
+      }
+
+      .input-cantidad {
+        width: 70px;
+        padding: 0.5rem;
+        border: 1px solid var(--color-border);
+        border-radius: 4px;
+        text-align: center;
+      }
+
+      .carrito-resumen {
+        background-color: var(--color-surface);
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin: 2rem 0;
+      }
+
+      .resumen-fila {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+        font-size: 1rem;
+      }
+
+      .resumen-total {
+        display: flex;
+        justify-content: space-between;
+        font-size: 1.3rem;
+        font-weight: 700;
+        border-top: 2px solid var(--color-border);
+        padding-top: 1rem;
+        color: var(--color-primary-900);
+      }
+
+      .carrito-acciones {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        margin: 2rem 0;
+        flex-wrap: wrap;
+      }
+
+      .btn-continuar {
+        background-color: var(--color-primary-900);
+        color: white;
+        padding: 0.8rem 2rem;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background-color 0.3s ease;
+      }
+
+      .btn-continuar:hover {
+        background-color: var(--color-primary-800);
+      }
+
+      .btn-vaciar {
+        background-color: #f3f4f6;
+        color: var(--color-text);
+        padding: 0.8rem 2rem;
+        border: 2px solid var(--color-border);
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+      }
+
+      .btn-vaciar:hover {
+        background-color: var(--color-border);
+      }
+
+      .btn-proceder {
+        background-color: var(--color-accent);
+        color: var(--color-primary-900);
+        padding: 1rem 3rem;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 1.1rem;
+        font-weight: 600;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .btn-proceder:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      @media (max-width: 768px) {
+        .tabla-carrito {
+          font-size: 0.9rem;
+        }
+
+        .tabla-carrito th,
+        .tabla-carrito td {
+          padding: 0.75rem 0.5rem;
+        }
+
+        .carrito-acciones {
+          flex-direction: column;
+        }
+
+        .btn-continuar,
+        .btn-vaciar,
+        .btn-proceder {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navegación -->
+    <nav class="navbar">
+      <div class="container">
+        <img src="img/Logo.jpeg" alt="Logo" width="100px" height="100px" />
+        <h1>GLAMOUR NYM</h1>
+        <button
+          class="nav-toggle"
+          aria-label="Abrir menú"
+          aria-expanded="false"
+        >
+          <span class="hamburger"></span>
+        </button>
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Inicio</a></li>
+          <li><a href="catalogo.html" class="nav-link">Catálogo</a></li>
+          <li><a href="contacto.html" class="nav-link">Contacto</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Encabezado -->
+    <header class="header-simple">
+      <div class="header-content">
+        <h2>Mi Carrito</h2>
+        <p>Revisa y confirma tu compra</p>
+      </div>
+    </header>
+
+    <!-- Contenido del carrito -->
+    <main class="carrito-container">
+      <div id="carritoVacio" class="carrito-vacio carrito-vacio-hidden">
+        <h3>Tu carrito está vacío</h3>
+        <p>No tienes productos en tu carrito aún. ¡Explora nuestro catálogo!</p>
+        <a href="catalogo.html" class="btn btn-continuar">Ir al Catálogo</a>
+      </div>
+
+      <div id="carritoContenido">
+        <table class="tabla-carrito" id="tablaCarrito">
+          <thead>
+            <tr>
+              <th>Producto</th>
+              <th>Talla</th>
+              <th>Precio Unitario</th>
+              <th>Cantidad</th>
+              <th>Subtotal</th>
+              <th>Acción</th>
+            </tr>
+          </thead>
+          <tbody id="carritoBody">
+            <!-- Los items se cargarán aquí dinámicamente -->
+          </tbody>
+        </table>
+
+        <div class="carrito-resumen">
+          <div class="resumen-fila">
+            <span>Cantidad total de productos:</span>
+            <span id="cantidadTotal">0</span>
+          </div>
+          <div class="resumen-fila">
+            <span>Subtotal:</span>
+            <span id="subtotal">$0</span>
+          </div>
+          <div
+            id="descuento"
+            class="resumen-fila descuento-resumen"
+            style="display: none"
+          ></div>
+          <div class="resumen-fila">
+            <span>Envío:</span>
+            <span id="envio">$0</span>
+          </div>
+
+          <div class="resumen-total">
+            <span>Total a pagar:</span>
+            <span id="totalPago">$0</span>
+          </div>
+        </div>
+
+        <div class="carrito-acciones">
+          <a href="catalogo.html" class="btn btn-continuar"
+            >Continuar Comprando</a
+          >
+          <button class="btn btn-vaciar" id="btnVaciar">Vaciar Carrito</button>
+          <button class="btn btn-proceder" id="btnProceder">
+            Proceder al Pago
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p>&copy; 2025 GLAMOUR NYM. Todos los derechos reservados.</p>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="main.js" defer></script>
+    <script src="facturacion.js" defer></script>
+    <script src="catalogo.js" defer></script>
+    <script src="carrito-unificado.js" defer></script>
+  </body>
+</html>

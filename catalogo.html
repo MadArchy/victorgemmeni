@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Catálogo - GLAMOUR NYM</title>
+    <link rel="icon" href="img/Logo.jpeg" type="image/x-icon" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="main.js" defer></script>
+  </head>
+  <body>
+    <!-- Navegación -->
+    <nav class="navbar">
+      <div class="container">
+        <img src="img/Logo.jpeg" alt="Logo" width="100px" height="100px" />
+        <h1>GLAMOUR NYM</h1>
+        <button
+          class="nav-toggle"
+          aria-label="Abrir menú"
+          aria-expanded="false"
+        >
+          <span class="hamburger"></span>
+        </button>
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Inicio</a></li>
+          <li><a href="catalogo.html" class="nav-link active">Catálogo</a></li>
+          <li><a href="contacto.html" class="nav-link">Contacto</a></li>
+          <li class="nav-item-carrito">
+            <a href="carrito.html" class="nav-link carrito-link">
+              🛒 Carrito
+              <span id="cartoBadge" class="carrito-badge">0</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Encabezado -->
+    <header class="header">
+      <img
+        src="img/IMP 2.jpg"
+        alt="Pantalones de mujer"
+        class="header-img visible"
+      />
+      <img src="img/H2.jpeg" alt="Pantalones de hombre" class="header-img" />
+      <div class="header-content">
+        <h2>Catálogo de Productos</h2>
+        <p>Explora nuestra colección de pantalones premium</p>
+      </div>
+    </header>
+
+    <!-- Contenedor de productos -->
+    <main class="catalogo-pag">
+      <!-- Sección HOMBRE -->
+      <section class="catalogo-seccion">
+        <h2 class="catalogo-titulo-seccion">Hombre</h2>
+        <div class="catalogo-grid">
+          <div class="producto" data-nombre="Pantalón Clásico">
+            <img src="img/H1.jpeg" alt="Pantalón Clásico" />
+            <h3>Pantalón Clásico</h3>
+            <p class="precio">$89.900</p>
+            <button class="btn btn-comprar">Comprar</button>
+          </div>
+          <div class="producto" data-nombre="Jean Ajustado">
+            <img src="img/H2.jpeg" alt="Jean Ajustado" />
+            <h3>Jean Ajustado</h3>
+            <p class="precio">$109.900</p>
+            <button class="btn btn-comprar">Comprar</button>
+          </div>
+          <div class="producto" data-nombre="Pantalón Deportivo">
+            <img src="img/H3.jpeg" alt="Pantalón Deportivo" />
+            <h3>Pantalón Deportivo</h3>
+            <p class="precio">$99.900</p>
+            <button class="btn btn-comprar">Comprar</button>
+          </div>
+        </div>
+      </section>
+      <!-- Sección MUJER -->
+      <section class="catalogo-seccion">
+        <h2 class="catalogo-titulo-seccion">Mujer</h2>
+        <div class="catalogo-grid">
+          <div class="producto" data-nombre="Jean Mujer">
+            <img src="img/M1.jpeg" alt="Jean Mujer" />
+            <h3>Jean Mujer</h3>
+            <p class="precio">$94.900</p>
+            <button class="btn btn-comprar">Comprar</button>
+          </div>
+          <div class="producto" data-nombre="Leggins Deportivos">
+            <img src="img/M2.jpeg" alt="Leggins Deportivos" />
+            <h3>Leggins Deportivos</h3>
+            <p class="precio">$79.900</p>
+            <button class="btn btn-comprar">Comprar</button>
+          </div>
+          <div class="producto" data-nombre="Pantalón Formal Mujer">
+            <img src="img/M3.jpeg" alt="Pantalón Formal Mujer" />
+            <h3>Pantalón Formal Mujer</h3>
+            <p class="precio">$119.900</p>
+            <button class="btn btn-comprar">Comprar</button>
+          </div>
+        </div>
+      </section>
+      <!-- Sección NIÑAS -->
+      <section class="catalogo-seccion">
+        <h2 class="catalogo-titulo-seccion">Niñas</h2>
+        <div class="catalogo-grid">
+          <div class="producto" data-nombre="Jean Niño">
+            <img src="img/N1.jpg" alt="Jean Niño" />
+            <h3>Jean Niñas</h3>
+            <p class="precio">$59.900</p>
+            <button class="btn btn-comprar">Comprar</button>
+          </div>
+          <div class="producto" data-nombre="Jogger Niño">
+            <img src="img/N2.jpg" alt="Jogger Niño" />
+            <h3>Jogger Niña</h3>
+            <p class="precio">$64.900</p>
+            <button class="btn btn-comprar">Comprar</button>
+          </div>
+          <div class="producto" data-nombre="Bermuda Niño">
+            <img src="img/N3.jpg" alt="Bermuda Niño" />
+            <h3>Bermuda Niña</h3>
+            <p class="precio">$44.900</p>
+            <button class="btn btn-comprar">Comprar</button>
+          </div>
+        </div>
+      </section>
+      <!-- Sección NIÑOS -->
+      <section class="catalogo-seccion">
+        <h2 class="catalogo-titulo-seccion">Niños</h2>
+        <div class="catalogo-grid">
+          <div class="producto" data-nombre="Leggins Niño">
+            <img src="img/NN1.jpg" alt="Leggins Niño" />
+            <h3>Leggins Niño</h3>
+            <p class="precio">$49.900</p>
+            <button class="btn btn-comprar">Comprar</button>
+          </div>
+          <div class="producto" data-nombre="Jogger Niño">
+            <img src="img/NN2.jpg" alt="Jogger Niño" />
+            <h3>Jogger Niño</h3>
+            <p class="precio">$59.900</p>
+            <button class="btn btn-comprar">Comprar</button>
+          </div>
+          <div class="producto" data-nombre="Bermuda Niño">
+            <img src="img/NN3.jpg" alt="Bermuda Niño" />
+            <h3>Bermuda Niño</h3>
+            <p class="precio">$39.900</p>
+            <button class="btn btn-comprar">Comprar</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Modal -->
+    <div class="modal" id="modalCompra">
+      <div class="modal-contenido">
+        <span class="cerrar">&times;</span>
+        <h3 id="nombreProducto"></h3>
+        <label for="talla">Talla:</label>
+        <select id="talla">
+          <option value=""></option>
+          <option>S</option>
+          <option>M</option>
+          <option>L</option>
+          <option>XL</option>
+        </select>
+
+        <label for="cantidad">Cantidad:</label>
+        <input type="number" id="cantidad" min="1" />
+
+        <!-- Contenedor para mensajes de error inline en el modal de compra -->
+        <p id="compraError" class="field-error" aria-live="polite"></p>
+
+        <!-- Información de precio y total (actualiza en tiempo real) -->
+        <p id="compraPrecio" class="modal-info" aria-live="polite"></p>
+        <p id="compraTotal" class="modal-info" aria-live="polite"></p>
+
+        <button class="btn btn-confirmar">Confirmar Compra</button>
+      </div>
+    </div>
+
+    <!-- Modal de Confirmación (muestra resumen y agradecimiento) -->
+    <div class="modal" id="modalConfirm">
+      <div class="modal-contenido">
+        <span class="cerrar cerrar-confirm">&times;</span>
+        <h3 id="confirmTitle">Compra confirmada</h3>
+        <p id="confirmDetails"></p>
+        <p class="confirm-thanks">Gracias por su compra</p>
+        <div class="confirm-actions">
+          <button class="btn btn-close-confirm">Cerrar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="toast">
+      <span class="toast__icon">✓</span>
+      <span class="toast__msg"></span>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p>&copy; 2025 GLAMOUR NYM. Todos los derechos reservados.</p>
+      </div>
+    </footer>
+
+    <!-- El script de catalogo.js se añade aquí -->
+    <script src="catalogo.js" defer></script>
+    <script src="carrito-unificado.js" defer></script>
+  </body>
+</html>

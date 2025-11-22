@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test Hamburger Menu</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      .test-info {
+        background: #f0f0f0;
+        padding: 1rem;
+        margin: 1rem;
+        border-radius: 8px;
+        font-family: monospace;
+      }
+
+      .test-info p {
+        margin: 0.5rem 0;
+      }
+
+      .content {
+        padding: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navegación -->
+    <nav class="navbar">
+      <div class="container">
+        <img src="img/Logo.jpeg" alt="Logo" width="100px" height="100px" />
+        <h1>GLAMOUR NYM - TEST</h1>
+        <button
+          class="nav-toggle"
+          aria-label="Abrir menú"
+          aria-expanded="false"
+        >
+          <span class="hamburger"></span>
+        </button>
+        <ul class="nav-links">
+          <li><a href="#" class="nav-link">Inicio</a></li>
+          <li><a href="#" class="nav-link active">Catálogo</a></li>
+          <li><a href="#" class="nav-link">Contacto</a></li>
+          <li><a href="#" class="nav-link">Carrito</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="content">
+      <h2>Test del Menú Hamburguesa</h2>
+      <div class="test-info">
+        <p><strong>Instrucciones:</strong></p>
+        <p>1. Redimensiona la ventana a menos de 770px de ancho</p>
+        <p>2. El botón hamburguesa debe ser visible</p>
+        <p>3. Haz click en el botón</p>
+        <p>4. Los enlaces deben aparecer en el menú desplegable</p>
+        <p>5. Los enlaces deben tener fondo oscuro y texto blanco</p>
+        <p>6. El botón debe transformarse en una X</p>
+      </div>
+
+      <h3>Información de Debug:</h3>
+      <div class="test-info">
+        <p>Abre la consola (F12) para ver logs en tiempo real</p>
+        <p>Verifica que main.js esté cargado y sin errores</p>
+        <p>Confirma que styles.css tenga todos los estilos necesarios</p>
+      </div>
+    </div>
+
+    <script src="main.js" defer></script>
+    <script>
+      // Debug log
+      console.log("Test page loaded");
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const navToggle = document.querySelector(".nav-toggle");
+        const navLinks = document.querySelector(".nav-links");
+        console.log("nav-toggle element:", navToggle);
+        console.log("nav-links element:", navLinks);
+
+        if (navToggle) {
+          navToggle.addEventListener("click", () => {
+            console.log("nav-toggle clicked!");
+            console.log(
+              "nav-links has 'open' class:",
+              navLinks.classList.contains("open")
+            );
+            console.log("nav-links classes:", navLinks.className);
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

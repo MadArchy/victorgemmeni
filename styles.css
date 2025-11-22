@@ -1,0 +1,1501 @@
+/* =============================
+   Responsividad para carrito
+============================== */
+@media (max-width: 600px) {
+  .carrito-container {
+    padding: 0 0.3rem;
+    max-width: 100vw;
+  }
+  .tabla-carrito {
+    font-size: 0.85rem;
+    width: 100%;
+    overflow-x: auto;
+    display: block;
+  }
+  .tabla-carrito th,
+  .tabla-carrito td {
+    padding: 0.5rem 0.2rem;
+    white-space: nowrap;
+  }
+  .carrito-resumen {
+    padding: 1rem;
+    font-size: 0.95rem;
+  }
+  .resumen-fila,
+  .resumen-total {
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 1rem;
+    gap: 0.2rem;
+  }
+  .carrito-acciones {
+    flex-direction: column;
+    gap: 0.7rem;
+    align-items: stretch;
+  }
+  .btn-continuar,
+  .btn-vaciar,
+  .btn-proceder {
+    width: 100%;
+    font-size: 1rem;
+    padding: 0.7rem 0.5rem;
+  }
+}
+.mostrar-descuento {
+  display: block !important;
+}
+/* Estilo para el descuento en el resumen del carrito */
+.descuento-resumen {
+  color: #10b981;
+  font-weight: 600;
+  display: none;
+}
+/* ==========================================
+   GLAMOUR NYM - Hoja de Estilos Única (versión corregida)
+   ========================================== */
+
+/* 1) Tokens (variables) */
+:root {
+  --color-bg: #ffffff;
+  --color-text: #111827;
+  --color-muted: #6b7280;
+  --color-surface: #f3f4f6;
+  --color-primary-900: #111827;
+  --color-primary-800: #1f2937;
+  --color-accent: #eab308;
+  --color-border: #e5e7eb;
+}
+
+/* Reglas de alta especificidad para sobrescribir el <style> embebido en carrito.html
+   (usamos !important para no modificar el HTML y forzar la responsividad) */
+@media (max-width: 768px) {
+  .carrito-container {
+    max-width: 100% !important;
+    padding: 0.5rem !important;
+  }
+
+  /* Permitir scroll horizontal en la tabla en pantallas pequeñas */
+  .tabla-carrito {
+    display: block !important;
+    width: 100% !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  .tabla-carrito thead,
+  .tabla-carrito tbody,
+  .tabla-carrito tr {
+    display: table !important;
+    width: 100% !important;
+    table-layout: fixed !important;
+  }
+
+  .tabla-carrito th,
+  .tabla-carrito td {
+    padding: 0.6rem 0.5rem !important;
+    white-space: nowrap !important;
+    text-overflow: ellipsis !important;
+    overflow: hidden !important;
+  }
+
+  /* Forzar que el resumen se apile en vertical y ocupe todo el ancho */
+  .carrito-resumen,
+  .resumen-fila,
+  .resumen-total {
+    width: 100% !important;
+  }
+
+  .resumen-fila,
+  .resumen-total {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.25rem !important;
+  }
+
+  /* Botones bloque y legibles en móviles */
+  .carrito-acciones {
+    flex-direction: column !important;
+    gap: 0.6rem !important;
+  }
+
+  .btn-continuar,
+  .btn-vaciar,
+  .btn-proceder {
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+}
+
+/* Ajustes adicionales para móviles muy pequeños (<=480px) */
+@media (max-width: 480px) {
+  /* Reducir logo y tamaño del título en la cabecera para ganar espacio */
+  .navbar .container img {
+    width: 48px !important;
+    height: auto !important;
+  }
+  .navbar .container h1 {
+    font-size: 1.1rem !important;
+    margin: 0 0 0 0.4rem !important;
+  }
+
+  /* Mostrar el toggle del menú y ocultar los enlaces para ahorrar espacio */
+  .nav-toggle {
+    display: inline-flex !important;
+  }
+  .nav-links {
+    display: none !important;
+  }
+
+  /* Header más compacto */
+  .header-simple .header-content {
+    padding: 1rem 0.5rem !important;
+  }
+  .header-simple .header-content h2 {
+    font-size: 1.4rem !important;
+  }
+
+  /* Mejor comportamiento para la tabla: scroll horizontal y celdas compactas */
+  .tabla-carrito {
+    display: block !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    border-radius: 8px !important;
+  }
+
+  .tabla-carrito thead {
+    display: table-header-group !important;
+  }
+
+  /* Establecer anchos mínimos por columna para evitar colapsos
+     y permitir truncado legible */
+  .tabla-carrito th:nth-child(1),
+  .tabla-carrito td:nth-child(1) { min-width: 120px !important; }
+  .tabla-carrito th:nth-child(2),
+  .tabla-carrito td:nth-child(2) { min-width: 60px !important; }
+  .tabla-carrito th:nth-child(3),
+  .tabla-carrito td:nth-child(3) { min-width: 90px !important; }
+  .tabla-carrito th:nth-child(4),
+  .tabla-carrito td:nth-child(4) { min-width: 60px !important; }
+  .tabla-carrito th:nth-child(5),
+  .tabla-carrito td:nth-child(5) { min-width: 90px !important; }
+  .tabla-carrito th:nth-child(6),
+  .tabla-carrito td:nth-child(6) { min-width: 80px !important; }
+
+  .tabla-carrito th,
+  .tabla-carrito td {
+    padding: 0.5rem 0.4rem !important;
+    font-size: 0.88rem !important;
+  }
+
+  .input-cantidad {
+    width: 48px !important;
+  }
+
+  /* Resumen y botones ocupando todo el ancho y con buena separación */
+  .carrito-resumen {
+    margin-top: 0.75rem !important;
+    padding: 1rem !important;
+  }
+  .resumen-fila,
+  .resumen-total {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.2rem !important;
+    font-size: 0.95rem !important;
+  }
+
+  .carrito-acciones {
+    flex-direction: column !important;
+    gap: 0.6rem !important;
+    margin: 1rem 0 !important;
+  }
+  .btn-continuar,
+  .btn-vaciar,
+  .btn-proceder {
+    width: 100% !important;
+    padding: 0.85rem 0.6rem !important;
+    font-size: 1rem !important;
+  }
+
+  /* Evitar que el logo empuje demasiado el layout lateralmente */
+  .container {
+    gap: 0.6rem !important;
+  }
+}
+
+/* ==============================
+   Botones del carrito (colores de marca)
+   ============================== */
+/* Usamos las variables del :root para mantener coherencia de marca */
+.carrito-resumen .btn-continuar,
+.carrito-acciones .btn-continuar,
+.carrito-acciones .btn-proceder {
+  background: var(--color-accent) !important;
+  color: var(--color-primary-900) !important;
+  border: none !important;
+}
+.carrito-acciones .btn-continuar:hover,
+.carrito-acciones .btn-proceder:hover {
+  filter: brightness(0.95) !important;
+}
+
+/* Botón vaciar: estilo secundario con borde de color de marca */
+.carrito-acciones .btn-vaciar {
+  background: transparent !important;
+  color: var(--color-accent) !important;
+  border: 2px solid var(--color-accent) !important;
+}
+.carrito-acciones .btn-vaciar:hover {
+  background: var(--color-accent) !important;
+  color: var(--color-primary-900) !important;
+}
+
+/* Mantener botón eliminar en rojo (acción destructiva) */
+.tabla-carrito .btn-eliminar {
+  background-color: #dc2626 !important;
+  color: #ffffff !important;
+}
+
+/* Asegurar contraste accesible en botones: sombra ligera */
+.carrito-acciones .btn-proceder {
+  box-shadow: 0 4px 12px rgba(234, 179, 8, 0.18) !important;
+}
+/* Transformar la tabla en tarjetas en móviles (sin editar HTML) */
+@media (max-width: 480px) {
+  .tabla-carrito thead {
+    display: none !important;
+  }
+
+  .tabla-carrito tbody {
+    display: block !important;
+  }
+
+  .tabla-carrito tbody tr {
+    display: block !important;
+    background: #ffffff !important;
+    border: 1px solid var(--color-border) !important;
+    border-radius: 8px !important;
+    margin-bottom: 0.75rem !important;
+    padding: 0.5rem !important;
+  }
+
+  .tabla-carrito td {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 0.45rem 0.35rem !important;
+    border-bottom: none !important;
+    white-space: normal !important;
+    font-size: 0.95rem !important;
+  }
+
+  /* Labels antes de cada valor usando nth-child - mantienen semanticidad sin cambiar HTML */
+  .tabla-carrito td:nth-child(1)::before { content: "Producto: "; font-weight: 600; margin-right: 0.4rem; }
+  .tabla-carrito td:nth-child(2)::before { content: "Talla: "; font-weight: 600; margin-right: 0.4rem; }
+  .tabla-carrito td:nth-child(3)::before { content: "Precio: "; font-weight: 600; margin-right: 0.4rem; }
+  .tabla-carrito td:nth-child(4)::before { content: "Cantidad: "; font-weight: 600; margin-right: 0.4rem; }
+  .tabla-carrito td:nth-child(5)::before { content: "Subtotal: "; font-weight: 600; margin-right: 0.4rem; }
+  .tabla-carrito td:nth-child(6)::before { content: "Acción: "; font-weight: 600; margin-right: 0.4rem; }
+
+  /* Ajustes para input y botones dentro de las tarjetas */
+  .tabla-carrito .input-cantidad {
+    width: 56px !important;
+    margin-left: 0.5rem !important;
+  }
+
+  .tabla-carrito .btn-eliminar {
+    padding: 0.4rem 0.6rem !important;
+    font-size: 0.9rem !important;
+  }
+
+  /* Asegurar que el contenedor principal no tiene overflow inesperado */
+  .carrito-container {
+    overflow: visible !important;
+  }
+}
+/* 2) Core base */
+body {
+  margin: 0;
+  font-family: "Poppins", Arial, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-size: 1.2rem;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 3) Layout y navegación */
+.navbar {
+  background-color: var(--color-primary-900);
+  color: #ffffff;
+  padding: 1em 0;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+}
+
+.nav-link {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s, text-decoration 0.3s;
+}
+
+.nav-link:hover {
+  color: #d1d5db;
+}
+
+.nav-link.active {
+  text-decoration: underline;
+  color: var(--color-accent);
+}
+
+/* efecto subrayado animado en enlaces de navegación */
+.nav-link::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 2px;
+  background: var(--color-accent);
+  transition: width 0.3s;
+}
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+.nav-link.active {
+  color: var(--color-accent);
+}
+
+/* 4) Secciones genéricas */
+.section {
+  display: none;
+  text-align: center;
+  padding: 4rem 2rem;
+}
+.section.visible {
+  display: block;
+}
+.section h2 {
+  font-size: 2rem;
+  margin-bottom: 1em;
+}
+.section p {
+  font-size: 1.2rem;
+}
+
+/* Footer (estilizado abajo en el archivo) */
+
+/* 6) Utilidades */
+.btn {
+  display: inline-block;
+  background-color: var(--color-primary-800);
+  color: #ffffff;
+  border: none;
+  padding: 0.85rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+}
+.btn:hover {
+  background-color: var(--color-primary-900);
+}
+.btn:active {
+  transform: translateY(1px);
+}
+
+/* 7) Home */
+.hero {
+  position: relative;
+  height: 24rem;
+  background-color: var(--color-primary-800);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0; /* Oculta por defecto, la clase .visible la mostrará */
+  transition: opacity 1s ease-in-out; /* Transición suave para el carrusel */
+}
+.hero-img.visible {
+  opacity: 0.5; /* La imagen activa tiene una opacidad del 50% */
+}
+.hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  color: #ffffff;
+}
+.hero-content h2 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+.hero-content p {
+  font-size: 1.25rem;
+}
+
+/* --- Animación de tarjetas para el Hero --- */
+.hero-cards {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr); /* 10 columnas */
+  grid-template-rows: repeat(5, 1fr); /* 5 filas */
+  z-index: 2; /* Por encima de la imagen, debajo del contenido */
+  pointer-events: none; /* No interfiere con el ratón */
+}
+
+.hero-card {
+  background-color: var(--color-primary-900);
+  transform: scale(1);
+  opacity: 1;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1),
+    opacity 0.6s ease-out;
+}
+
+/* Estado final de la animación: las tarjetas se encogen y desaparecen */
+.hero.animation-started .hero-card {
+  transform: scale(0);
+  opacity: 0;
+}
+
+/* Ocultar el contenido del hero al inicio y mostrarlo con una animación de fade-in */
+.hero-content {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.5s ease-in 0.8s, transform 0.5s ease-in 0.8s; /* Retraso para esperar a las tarjetas */
+}
+
+.hero.animation-started .hero-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Header específico para la página de catálogo: separación y ancho centrado */
+.header {
+  text-align: center;
+  /* Hacemos el header a ancho completo */
+  padding: 0; /* padding lo manejamos en .header-content para controlar altura */
+  background-color: var(--color-surface);
+  width: 100%;
+  max-width: none;
+  margin: 0; /* sin márgenes laterales para ocupar todo el ancho */
+  border-radius: 0; /* bordes alineados al ancho completo */
+  position: relative; /* Necesario para posicionar las imágenes del carrusel */
+  overflow: hidden; /* Oculta las partes de la imagen que se salgan del header */
+  color: #ffffff; /* Asegura que el texto sea blanco para contrastar con las imágenes */
+}
+
+/* Imágenes del carrusel del header */
+.header-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  filter: brightness(0.6); /* Oscurece la imagen para que el texto resalte */
+  z-index: 0;
+}
+
+.header-img.visible {
+  opacity: 1;
+}
+
+.header h2 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.header p {
+  color: #ffffff; /* Texto blanco para que sea legible sobre las imágenes */
+  font-size: 1.1rem;
+}
+
+/* Contenido de texto del header (para que se superponga a las imágenes) */
+.header::before {
+  /* Overlay suave para mejorar contraste del texto sobre las imágenes */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(0,0,0,0.32), rgba(0,0,0,0.32));
+  pointer-events: none;
+  z-index: 1;
+}
+
+.header-content {
+  position: relative;
+  z-index: 2; /* encima del overlay */
+  /* Centrar y limitar el ancho del contenido dentro del header full-width */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2.5rem 1rem; /* mantiene la altura y espaciado original */
+}
+
+@media (max-width: 480px) {
+  .header-content {
+    padding: 1.25rem 0.75rem;
+  }
+  .header h2 {
+    font-size: 1.75rem;
+  }
+}
+
+.about {
+  padding: 4rem 1.5rem;
+  text-align: center;
+}
+.about h3 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+.about p {
+  font-size: 1.125rem;
+  color: var(--color-muted);
+  margin-bottom: 1rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.features {
+  background-color: var(--color-surface);
+  padding: 4rem 1.5rem;
+  text-align: center;
+}
+.features h3 {
+  font-size: 2rem;
+  margin-bottom: 3rem;
+}
+.features .grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.card {
+  background-color: #ffffff;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  transition: transform 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-5px);
+}
+.icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+.card h4 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+.card p {
+  color: var(--color-muted);
+  font-size: 1rem;
+}
+
+/* --- GRID RESPONSIVO --- */
+@media (min-width: 601px) and (max-width: 1023px) {
+  .features .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 1024px) {
+  .features .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* 8) Formularios */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+label {
+  font-weight: bold;
+  color: var(--color-muted);
+  font-size: 1rem;
+}
+input,
+textarea,
+select {
+  padding: 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  background-color: #ffffff;
+  color: var(--color-text);
+}
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(234, 179, 8, 0.2);
+}
+button {
+  background: var(--color-primary-800);
+  color: #fff;
+  border: none;
+  padding: 1rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+}
+button:hover {
+  background: var(--color-primary-900);
+}
+button:active {
+  transform: translateY(1px);
+}
+
+/* 9) Catálogo */
+.catalogo {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  padding: 2rem 1rem;
+}
+@media (min-width: 600px) {
+  .catalogo {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 1024px) {
+  .catalogo {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* 10) Contacto */
+.contacto {
+  padding: 4rem 1.5rem;
+  max-width: 1200px;
+  margin: 2rem auto 3rem auto;
+}
+.contacto h2 {
+  text-align: center;
+  font-size: 2.4rem;
+  margin-bottom: 2.5rem;
+}
+.contacto .grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+  justify-content: center;
+}
+.contacto .info,
+.contacto .formulario {
+  flex: 1 1 350px;
+  max-width: 480px;
+  box-sizing: border-box;
+}
+
+/* Redes sociales en contacto: alineación y tamaños coherentes */
+.redes-sociales {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+}
+.icono-red {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.icono-red svg {
+  width: 30px;
+  height: 30px;
+  display: block;
+}
+
+/* Mapa (Google Maps embed responsivo) */
+.mapa-seccion {
+  padding: 3rem 1.5rem;
+  text-align: center;
+  background-color: var(--color-surface);
+}
+
+.mapa-seccion h2 {
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--color-primary-800);
+}
+
+.mapa-seccion .ubicacion-label {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 2rem;
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: rgba(234, 179, 8, 0.1);
+  border-radius: 4px;
+}
+
+.mapa-contenedor {
+  width: 85%;
+  max-width: 700px;
+  margin: 0 auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.mapa-contenedor iframe {
+  width: 100%;
+  height: 350px;
+  border: none;
+  display: block;
+}
+
+.mapa-iframe {
+  border: 0 !important;
+}
+
+@media (max-width: 768px) {
+  .mapa-seccion h2 {
+    font-size: 1.75rem;
+  }
+  .mapa-contenedor iframe {
+    height: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mapa-seccion {
+    padding: 1.5rem 1rem;
+  }
+  .mapa-seccion h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .mapa-contenedor iframe {
+    height: 250px;
+  }
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 700px) {
+  body,
+  .section,
+  .catalogo-seccion,
+  .catalogo-pag,
+  .contacto {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  .hero-content h2 {
+    font-size: 2.2rem;
+  }
+  .features .grid,
+  .catalogo {
+    grid-template-columns: 1fr;
+  }
+  .contacto h2 {
+    font-size: 2rem;
+  }
+}
+
+/* 11) Footer */
+.footer {
+  font-size: 1rem;
+  text-align: center;
+  padding: 2rem 1rem;
+  background-color: var(--color-primary-900);
+  color: white;
+}
+
+/* =========================
+   Estilos del Catálogo (movidos desde catalogo.html)
+   ========================= */
+.catalogo-pag {
+  width: 90%;
+  max-width: 1200px;
+  margin: 2rem auto;
+}
+
+.catalogo-titulo-seccion {
+  font-size: 1.75rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 3px solid var(--color-accent);
+  display: inline-block;
+  padding-bottom: 0.25rem;
+}
+
+.catalogo-grid {
+  display: grid;
+  /* columnas fluidas: mínimo 220px por card para mejor UX */
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+}
+
+.producto {
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  padding: 1rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(16, 24, 40, 0.04);
+}
+
+.producto:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.12);
+}
+
+.producto img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 0.9rem;
+  transition: transform 0.28s ease, filter 0.28s ease;
+  display: block;
+}
+
+.producto:hover img {
+  transform: scale(1.03);
+  filter: saturate(1.03) contrast(1.02);
+}
+
+.producto h3 {
+  font-size: 1.18rem;
+  margin: 0.4rem 0 0.3rem 0;
+  font-weight: 600;
+  color: var(--color-primary-800);
+}
+
+.producto .precio {
+  color: var(--color-primary-800);
+  background: linear-gradient(
+    90deg,
+    rgba(253, 252, 251, 0.9),
+    rgba(249, 246, 242, 0.6)
+  );
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  display: inline-block;
+}
+
+/* botón específico dentro de la card para no sobrescribir .btn global */
+.producto .btn {
+  margin-top: auto;
+  align-self: center;
+  width: 92%;
+  max-width: 260px;
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.producto .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(16, 24, 40, 0.08);
+}
+
+/* Contenedor de acciones dentro de la tarjeta (botones lado a lado) */
+.producto-actions {
+  display: flex;
+  gap: 0.6rem;
+  width: 100%;
+  margin-top: 0.8rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.producto-actions .btn {
+  flex: 1 1 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.9rem;
+  border-radius: 10px;
+  min-height: 44px; /* altura consistente */
+  box-sizing: border-box;
+  font-size: 0.95rem;
+}
+
+.producto-actions .btn,
+.producto-actions .btn span {
+  white-space: nowrap; /* evitar salto de línea que provoca alturas distintas */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Estilos específicos para distinguir acciones */
+.producto .btn-addcarrito {
+  background-color: #16a34a; /* verde */
+  color: #ffffff;
+  border: none;
+}
+.producto .btn-addcarrito:hover {
+  background-color: #13803d;
+}
+
+.producto .btn-comprar {
+  background-color: #4f46e5; /* morado/azul */
+  color: #ffffff;
+  border: none;
+}
+.producto .btn-comprar:hover {
+  background-color: #3730a3;
+}
+
+/* Asegurar contraste del SVG dentro del botón */
+.producto .btn svg {
+  fill: currentColor;
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+}
+
+.producto-actions .btn span {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1;
+}
+
+/* En caso de texto largo, truncar y mantener altura uniforme */
+.producto-actions .btn span {
+  max-width: 100%;
+}
+
+.modal {
+  display: none; /* hidden by default; JS will set display:flex when opening */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(17, 24, 39, 0.7);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 1rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 220ms ease, visibility 220ms ease;
+}
+
+.modal-contenido {
+  background-color: var(--color-bg);
+  padding: 2rem;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 400px;
+  position: relative;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  transform: translateY(-8px) scale(0.98);
+  opacity: 0;
+  transition: transform 260ms cubic-bezier(0.2, 0.9, 0.3, 1), opacity 200ms ease;
+}
+
+/* Estado abierto de modal: visible y contenido animado */
+.modal.modal--open {
+  opacity: 1;
+  visibility: visible;
+}
+.modal.modal--open .modal-contenido {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+.cerrar {
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.modal label {
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 0.25rem;
+  font-weight: 500;
+}
+
+.modal input,
+.modal select {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+}
+
+.toast {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  background-color: var(--color-primary-800);
+  color: var(--color-bg);
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  display: none;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos para modal de confirmación */
+.confirm-thanks {
+  font-weight: 700;
+  text-align: center;
+  margin-top: 0.5rem;
+  color: var(--color-primary-800);
+}
+
+#confirmDetails {
+  margin-top: 0.5rem;
+  line-height: 1.4;
+  color: var(--color-text);
+}
+
+.btn-close-confirm {
+  display: inline-block;
+}
+
+.confirm-actions {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+/* Mensajes de error para campos (inline) */
+.field-error {
+  color: #ef4444; /* rojo */
+  font-size: 0.95rem;
+  margin-top: 0.45rem;
+  min-height: 1.2rem;
+}
+
+.input-error {
+  border-color: #ef4444 !important;
+}
+
+/* Estilo para número de pedido en modal de confirmación */
+.order-number {
+  display: block;
+  margin-top: 0.75rem;
+  color: var(--color-primary-800);
+  background: rgba(234, 179, 8, 0.06);
+  padding: 0.45rem 0.65rem;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+.toast__icon {
+  font-weight: bold;
+}
+
+/* RESPONSVIE del catálogo */
+@media (max-width: 768px) {
+  .catalogo-grid {
+    gap: 1.25rem;
+  }
+  .producto img {
+    height: 200px;
+  }
+  .producto {
+    padding: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .producto {
+    padding: 0.75rem;
+  }
+  .producto img {
+    height: 140px;
+  }
+  .producto h3 {
+    font-size: 1rem;
+  }
+  .producto .precio {
+    font-size: 0.95rem;
+  }
+  .producto .btn {
+    width: 100%;
+  }
+}
+
+.producto:focus-within,
+.producto:focus {
+  outline: 3px solid rgba(17, 24, 39, 0.06);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* -------------------------------------------------
+   Interactividad: menú móvil, errores de formulario
+   y pequeñas animaciones (ejemplos explicativos)
+   ------------------------------------------------- */
+
+/* Botón hamburguesa (visible en pantallas pequeñas) */
+.nav-toggle {
+  display: none; /* oculto por defecto; se muestra en mobile <= 770px */
+  background: var(--color-accent);
+  border: none;
+  cursor: pointer;
+  padding: 0.6rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  transition: all 280ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.nav-toggle:hover {
+  background: var(--color-primary-800);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.nav-toggle:active {
+  transform: translateY(0);
+}
+
+.nav-toggle:focus-visible {
+  outline: 3px solid rgba(234, 179, 8, 0.3);
+  outline-offset: 2px;
+}
+
+.nav-toggle .hamburger {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--color-primary-900);
+  position: relative;
+  transition: all 320ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.nav-toggle .hamburger::before,
+.nav-toggle .hamburger::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 24px;
+  height: 2px;
+  background: var(--color-primary-900);
+  transition: all 320ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform-origin: 12px;
+}
+
+.nav-toggle .hamburger::before {
+  top: -8px;
+}
+
+.nav-toggle .hamburger::after {
+  top: 8px;
+}
+
+/* Estado abierto: transformar en 'X' con animación suave */
+.nav-toggle.open .hamburger {
+  background: transparent;
+  transform: rotate(45deg);
+}
+
+.nav-toggle.open .hamburger::before {
+  transform: translateY(0px) rotate(0deg);
+  top: 0;
+}
+
+.nav-toggle.open .hamburger::after {
+  transform: translateY(0px) rotate(-90deg);
+  top: 0;
+}
+
+/* Cambio de color cuando el menú está abierto */
+.nav-toggle.open {
+  background: var(--color-primary-800);
+}
+
+.nav-toggle.open .hamburger,
+.nav-toggle.open .hamburger::before,
+.nav-toggle.open .hamburger::after {
+  background: #ffffff;
+}
+
+/* Cuando el menú está abierto (clase .open en .nav-links) */
+.nav-links.open {
+  display: flex !important;
+  background-color: var(--color-primary-900);
+  flex-direction: column;
+  padding: 1rem 1.5rem;
+  gap: 0.75rem;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  margin-top: 0;
+  z-index: 999;
+  animation: slideDown 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.nav-links.open li {
+  display: block;
+}
+
+.nav-links.open li a {
+  color: #ffffff;
+  display: block;
+  padding: 0.75rem 0.5rem;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background-color 200ms ease;
+}
+
+.nav-links.open li a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--color-accent);
+}
+
+/* Animación de menú desplegable */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Indicador de inputs con error */
+.input-error {
+  border: 1.5px solid #ef4444; /* rojo suave */
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.12);
+}
+
+/* Badge dinámico creado por JS */
+.dynamic-badge {
+  display: inline-block;
+  margin-top: 0.75rem;
+  padding: 0.25rem 0.6rem;
+  background: rgba(59, 130, 246, 0.08);
+  color: var(--color-primary-800);
+  font-weight: 600;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+/* Animaciones de ejemplo */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Ajustes responsivos para el menú */
+@media (max-width: 770px) {
+  .nav-toggle {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-links {
+    display: none !important; /* se mostrará cuando .open */
+    list-style: none;
+    width: 100%;
+    position: fixed;
+    top: 80px;
+    left: 0;
+    right: 0;
+    background-color: var(--color-primary-900);
+    flex-direction: column;
+    padding: 1.5rem;
+    gap: 1rem;
+    margin: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    max-height: calc(100vh - 80px);
+    overflow-y: auto;
+    z-index: 998;
+  }
+
+  .nav-links.open {
+    display: flex !important;
+  }
+
+  .nav-links li {
+    display: block;
+    margin: 0;
+  }
+
+  .nav-links li a {
+    color: #ffffff;
+    display: block;
+    padding: 0.75rem 0.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 200ms ease, color 200ms ease;
+    font-weight: 500;
+  }
+
+  .nav-links li a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--color-accent);
+  }
+
+  .nav-links li a.active {
+    color: var(--color-accent);
+    background-color: rgba(234, 179, 8, 0.1);
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-links {
+    top: 70px !important;
+    max-height: calc(100vh - 70px);
+    padding: 1rem;
+  }
+
+  .nav-links li a {
+    padding: 0.6rem 0.4rem;
+    font-size: 0.95rem;
+  }
+}
+
+/* ==========================================
+   ESTILOS PARA EL CARRITO DE COMPRAS
+   ========================================== */
+
+/* Badge del carrito */
+.carrito-badge {
+  display: none;
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: #dc2626;
+  color: white;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+.carrito-badge[style*="display: inline-block"],
+.carrito-badge:not([style]) {
+  display: inline-flex !important;
+}
+
+.nav-item-carrito {
+  position: relative;
+}
+
+.carrito-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Notificación toast para carrito */
+.toast-carrito {
+  background-color: #10b981;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.toast-carrito .toast__icon {
+  font-size: 1.3rem;
+}
+
+/* Encabezado simple (para carrito.html) */
+.header-simple {
+  background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+  color: white;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.header-simple .header-content {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.header-simple h2 {
+  font-size: 2.5rem;
+  margin: 0 0 1rem 0;
+}
+
+.header-simple p {
+  font-size: 1.1rem;
+  color: #d1d5db;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .header-simple {
+    padding: 2rem 1rem;
+  }
+
+  .header-simple h2 {
+    font-size: 1.8rem;
+  }
+
+  .header-simple p {
+    font-size: 1rem;
+  }
+}

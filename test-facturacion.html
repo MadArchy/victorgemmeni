@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prueba de Facturación</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        background-color: #f0f0f0;
+      }
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        background: white;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        color: #2c3e50;
+        text-align: center;
+      }
+      .info {
+        background: #e3f2fd;
+        border-left: 4px solid #2196f3;
+        padding: 15px;
+        margin: 20px 0;
+        border-radius: 4px;
+      }
+      .button {
+        display: inline-block;
+        background: #2c3e50;
+        color: white;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        margin: 10px 5px;
+        transition: background 0.3s;
+      }
+      .button:hover {
+        background: #1a252f;
+      }
+      .buttons-container {
+        text-align: center;
+        margin: 30px 0;
+      }
+      code {
+        background: #f5f5f5;
+        padding: 2px 6px;
+        border-radius: 3px;
+        font-family: "Courier New", monospace;
+      }
+      .success {
+        color: #27ae60;
+        font-weight: bold;
+      }
+      .steps {
+        margin: 20px 0;
+        line-height: 1.8;
+      }
+      .steps ol {
+        padding-left: 20px;
+      }
+      .steps li {
+        margin: 10px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🧾 Prueba de Facturación Electrónica</h1>
+
+      <div class="info">
+        <strong>ℹ️ Información:</strong><br />
+        Esta página permite probar el sistema de facturación sin tener que hacer
+        una compra real. Genera facturas de ejemplo para verificar que todo
+        funciona correctamente.
+      </div>
+
+      <h2>Ejemplos de Prueba</h2>
+
+      <div class="steps">
+        <h3>Opción 1: Factura Simple (1 Producto)</h3>
+        <button class="button" onclick="generarFacturaSimple()">
+          📄 Generar Factura Simple
+        </button>
+        <p>
+          Genera una factura con un único producto para ver el formato básico.
+        </p>
+      </div>
+
+      <div class="steps">
+        <h3>Opción 2: Factura Completa (Múltiples Productos)</h3>
+        <button class="button" onclick="generarFacturaCompleta()">
+          📋 Generar Factura Completa
+        </button>
+        <p>Genera una factura con múltiples productos, descuento incluido.</p>
+      </div>
+
+      <div class="steps">
+        <h3>Opción 3: Ver Historial de Facturas</h3>
+        <button class="button" onclick="verHistorial()">
+          📚 Ver Historial
+        </button>
+        <p>Muestra todas las facturas que has generado previamente.</p>
+      </div>
+
+      <div class="steps">
+        <h3>Opción 4: Limpiar localStorage</h3>
+        <button
+          class="button"
+          onclick="limpiarStorage()"
+          style="background: #f44336"
+        >
+          🗑️ Limpiar Datos
+        </button>
+        <p>
+          ⚠️ Elimina todas las facturas guardadas localmente.
+          <strong>No se puede deshacer.</strong>
+        </p>
+      </div>
+
+      <hr />
+
+      <h2>¿Cómo Funciona?</h2>
+      <div class="steps">
+        <ol>
+          <li>Presiona cualquiera de los botones arriba</li>
+          <li>Se abrirá una nueva ventana con la factura electrónica</li>
+          <li>Verás automáticamente el diálogo de impresión</li>
+          <li>
+            Puedes:
+            <ul>
+              <li><strong>Imprimir:</strong> A impresora o PDF</li>
+              <li>
+                <strong>Cerrar:</strong> Sin imprimir (factura se guarda igual)
+              </li>
+            </ul>
+          </li>
+          <li>La factura se guarda automáticamente en localStorage</li>
+        </ol>
+      </div>
+
+      <hr />
+
+      <h2>Información Técnica</h2>
+      <div class="info">
+        <strong>Archivos involucrados:</strong>
+        <ul>
+          <li><code>facturacion.js</code> - Lógica de facturación</li>
+          <li><code>carrito-unificado.js</code> - Gestión del carrito</li>
+          <li><code>carrito.html</code> - Página del carrito</li>
+        </ul>
+        <br />
+        <strong>Almacenamiento:</strong> localStorage (~5-10 MB disponibles)
+        <br />
+        <strong>Facturas guardadas:</strong>
+        <span id="countFacturas">0</span> facturas
+      </div>
+
+      <p
+        style="
+          text-align: center;
+          color: #999;
+          margin-top: 30px;
+          font-size: 12px;
+        "
+      >
+        Página de prueba para GLAMOUR NYM<br />
+        © 2025 Todos los derechos reservados
+      </p>
+    </div>
+
+    <!-- IMPORTANTE: Incluye el archivo facturacion.js -->
+    <script src="facturacion.js"></script>
+
+    <script>
+      /**
+       * Actualizar contador de facturas
+       */
+      function actualizarContador() {
+        const historial = obtenerHistorialFacturas();
+        document.getElementById("countFacturas").textContent = historial.length;
+      }
+
+      /**
+       * Generar factura simple (prueba 1)
+       */
+      function generarFacturaSimple() {
+        const items = [
+          {
+            nombre: "Pantalón Clásico Azul",
+            precio: 89900,
+            talla: "M",
+            cantidad: 1,
+          },
+        ];
+
+        const resumen = {
+          subtotal: 89900,
+          descuento: 0,
+        };
+
+        generarFactura(items, resumen);
+        setTimeout(actualizarContador, 500);
+      }
+
+      /**
+       * Generar factura completa (prueba 2)
+       */
+      function generarFacturaCompleta() {
+        const items = [
+          {
+            nombre: "Pantalón Clásico Azul",
+            precio: 89900,
+            talla: "M",
+            cantidad: 2,
+          },
+          {
+            nombre: "Blusa Elegante Blanca",
+            precio: 65900,
+            talla: "S",
+            cantidad: 1,
+          },
+          {
+            nombre: "Chaqueta Premium Negra",
+            precio: 149900,
+            talla: "L",
+            cantidad: 1,
+          },
+          {
+            nombre: "Cinturón de Cuero",
+            precio: 45000,
+            talla: "Único",
+            cantidad: 1,
+          },
+        ];
+
+        // Subtotal: (89900*2) + 65900 + 149900 + 45000 = 440600
+        const resumen = {
+          subtotal: 440600,
+          descuento: 44060, // 10% de descuento
+        };
+
+        generarFactura(items, resumen);
+        setTimeout(actualizarContador, 500);
+      }
+
+      /**
+       * Ver historial de facturas
+       */
+      function verHistorial() {
+        const facturas = obtenerHistorialFacturas();
+
+        if (facturas.length === 0) {
+          alert(
+            "❌ No hay facturas generadas aún.\n\nGenera una factura de prueba primero."
+          );
+          return;
+        }
+
+        let mensaje = `✅ Se encontraron ${facturas.length} factura(s):\n\n`;
+        facturas.forEach((f, i) => {
+          const fecha = new Date(f.fecha).toLocaleDateString("es-CO");
+          const total = f.total.toLocaleString("es-CO", {
+            style: "currency",
+            currency: "COP",
+            minimumFractionDigits: 0,
+          });
+          mensaje += `${i + 1}. ${
+            f.numero
+          }\n   Fecha: ${fecha} | Total: ${total}\n\n`;
+        });
+
+        alert(mensaje);
+      }
+
+      /**
+       * Limpiar localStorage
+       */
+      function limpiarStorage() {
+        if (
+          confirm(
+            "⚠️ ¿Estás seguro?\n\nEsto eliminará TODAS las facturas guardadas.\nEsta acción NO se puede deshacer."
+          )
+        ) {
+          // Obtener lista de facturas
+          try {
+            const datosLista = localStorage.getItem("facturaGLAMOUR_lista");
+            if (datosLista) {
+              const lista = JSON.parse(datosLista);
+              // Eliminar cada factura
+              lista.forEach((numero) => {
+                localStorage.removeItem(`facturaGLAMOUR_${numero}`);
+              });
+              // Eliminar lista
+              localStorage.removeItem("facturaGLAMOUR_lista");
+            }
+            alert("✅ Datos eliminados correctamente.");
+            actualizarContador();
+          } catch (error) {
+            alert("❌ Error al limpiar datos: " + error.message);
+          }
+        }
+      }
+
+      // Actualizar contador al cargar la página
+      actualizarContador();
+
+      // Mensaje en consola
+      console.log(
+        "%c🧾 Sistema de Facturación Activo",
+        "color: #2c3e50; font-size: 16px; font-weight: bold;"
+      );
+      console.log("Funciones disponibles:");
+      console.log("- generarFactura(items, resumen)");
+      console.log("- obtenerHistorialFacturas()");
+      console.log("- limpiarFacturasAntiguas()");
+    </script>
+  </body>
+</html>

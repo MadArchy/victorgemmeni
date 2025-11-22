@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GLAMOUR NYM - Índice de Facturación</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        padding: 40px 20px;
+      }
+
+      .contenedor {
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+
+      header {
+        background: white;
+        padding: 40px;
+        border-radius: 12px;
+        margin-bottom: 40px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        text-align: center;
+      }
+
+      /* Logo en el header */
+      .logo {
+        max-height: 80px;
+        width: auto;
+        display: block;
+        margin: 0 auto 15px;
+      }
+
+      h1 {
+        color: #667eea;
+        font-size: 2.2rem;
+        margin-bottom: 10px;
+      }
+
+      .subtitle {
+        color: #999;
+        font-size: 1.1rem;
+        margin-bottom: 20px;
+      }
+
+      .badges {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .badge {
+        background: #667eea;
+        color: white;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 600;
+      }
+
+      .badge.success {
+        background: #27ae60;
+      }
+
+      .seccion {
+        background: white;
+        padding: 30px;
+        border-radius: 12px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .seccion h2 {
+        color: #333;
+        margin-bottom: 20px;
+        border-bottom: 3px solid #667eea;
+        padding-bottom: 10px;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+      }
+
+      .card {
+        border: 2px solid #f0f0f0;
+        border-radius: 8px;
+        padding: 20px;
+        transition: all 0.3s ease;
+      }
+
+      .card:hover {
+        border-color: #667eea;
+        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+        transform: translateY(-2px);
+      }
+
+      .card h3 {
+        color: #333;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .card p {
+        color: #666;
+        font-size: 0.9rem;
+        line-height: 1.6;
+        margin-bottom: 15px;
+      }
+
+      .card-links {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .link-btn {
+        padding: 10px 15px;
+        background: #667eea;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        text-align: center;
+        font-weight: 600;
+        transition: background 0.3s;
+        font-size: 0.9rem;
+        border: none;
+        cursor: pointer;
+      }
+
+      .link-btn:hover {
+        background: #5568d3;
+      }
+
+      .link-btn.secundario {
+        background: #27ae60;
+      }
+
+      .link-btn.secundario:hover {
+        background: #229954;
+      }
+
+      .link-btn.terciario {
+        background: #f39c12;
+      }
+
+      .link-btn.terciario:hover {
+        background: #d68910;
+      }
+
+      .info-box {
+        background: #f0f7ff;
+        border-left: 4px solid #667eea;
+        padding: 15px;
+        border-radius: 4px;
+        margin-bottom: 20px;
+      }
+
+      .info-box strong {
+        color: #667eea;
+      }
+
+      .lista {
+        list-style: none;
+        padding: 0;
+      }
+
+      .lista li {
+        padding: 10px;
+        border-bottom: 1px solid #f0f0f0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .lista li:last-child {
+        border-bottom: none;
+      }
+
+      .lista-icon {
+        font-size: 1.2rem;
+        width: 25px;
+        text-align: center;
+      }
+
+      .quick-start {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 30px;
+        border-radius: 12px;
+        margin: 30px 0;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .quick-start h2 {
+        border-bottom-color: rgba(255, 255, 255, 0.3);
+        color: white;
+      }
+
+      .pasos {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .paso {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 20px;
+        border-radius: 8px;
+        text-align: center;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .paso-numero {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .paso p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+        margin: 0;
+      }
+
+      footer {
+        text-align: center;
+        color: white;
+        padding: 20px;
+        margin-top: 40px;
+      }
+
+      .emoji {
+        font-size: 1.3em;
+      }
+
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 1.5rem;
+        }
+
+        header {
+          padding: 20px;
+        }
+
+        .seccion {
+          padding: 20px;
+        }
+
+        .grid {
+          grid-template-columns: 1fr;
+        }
+
+        .pasos {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="contenedor">
+      <!-- ENCABEZADO -->
+      <header>
+        <!-- Logo de la empresa (archivo: img/Logo.jpeg) -->
+        <img src="img/Logo.jpeg" alt="Logo GLAMOUR NYM" class="logo" />
+        <h1><span class="emoji">📋</span> GLAMOUR NYM</h1>
+        <p class="subtitle">Sistema de Facturación Electrónica</p>
+        <div class="badges">
+          <span class="badge success">✅ Implementado</span>
+          <span class="badge">🚀 Listo para usar</span>
+          <span class="badge">📱 Responsive</span>
+          <span class="badge">🔒 Seguro</span>
+        </div>
+      </header>
+
+      <!-- QUICK START -->
+      <div class="quick-start">
+        <h2>⚡ Comienza en 3 Pasos</h2>
+        <div class="pasos">
+          <div class="paso">
+            <div class="paso-numero">1️⃣</div>
+            <p>
+              <strong>Abre</strong> validacion.html para verificar instalación
+            </p>
+          </div>
+          <div class="paso">
+            <div class="paso-numero">2️⃣</div>
+            <p><strong>Lee</strong> INICIO_RAPIDO.md (3 minutos)</p>
+          </div>
+          <div class="paso">
+            <div class="paso-numero">3️⃣</div>
+            <p><strong>Prueba</strong> test-facturacion.html sin compromisos</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECCIÓN 1: ARCHIVOS PRINCIPALES -->
+      <div class="seccion">
+        <h2>📁 Archivos Principales (Creados)</h2>
+        <div class="grid">
+          <div class="card">
+            <h3><span class="emoji">🔧</span> facturacion.js</h3>
+            <p>
+              Sistema completo de facturación (500+ líneas). Este es el archivo
+              clave que genera las facturas automáticamente.
+            </p>
+            <p><strong>Ubicación:</strong> Raíz del proyecto</p>
+            <p><strong>Tipo:</strong> Código JavaScript</p>
+            <p><strong>Tamaño:</strong> ~20 KB</p>
+          </div>
+
+          <div class="card">
+            <h3><span class="emoji">🧪</span> test-facturacion.html</h3>
+            <p>
+              Página para probar el sistema sin hacer compras reales. Genera
+              facturas de ejemplo automáticamente.
+            </p>
+            <p><strong>Ubicación:</strong> Raíz del proyecto</p>
+            <p><strong>Uso:</strong> Primero que debes visitar</p>
+            <div class="card-links">
+              <a href="test-facturacion.html" class="link-btn"
+                >Abrir Página de Pruebas</a
+              >
+            </div>
+          </div>
+
+          <div class="card">
+            <h3><span class="emoji">✔️</span> validacion.html</h3>
+            <p>
+              Verifica que todo esté instalado correctamente. Comprueba que tus
+              navegadores soportan las funciones necesarias.
+            </p>
+            <p><strong>Ubicación:</strong> Raíz del proyecto</p>
+            <p><strong>Uso:</strong> Validación de instalación</p>
+            <div class="card-links">
+              <a href="validacion.html" class="link-btn secundario"
+                >Validar Sistema</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECCIÓN 2: DOCUMENTACIÓN -->
+      <div class="seccion">
+        <h2>📚 Documentación (Lee en Este Orden)</h2>
+        <div class="grid">
+          <div class="card">
+            <h3><span class="emoji">⚡</span> INICIO_RAPIDO.md</h3>
+            <p>Guía rápida de 3 minutos. Comienza aquí si es tu primera vez.</p>
+            <p><strong>Tiempo:</strong> 3 minutos</p>
+            <p><strong>Dificultad:</strong> Muy Fácil</p>
+            <div class="card-links">
+              <a href="INICIO_RAPIDO.md" class="link-btn terciario" download
+                >📥 Descargar</a
+              >
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>
+              <span class="emoji">📖</span> docs/FACTURACION_ELECTRONICA.md
+            </h3>
+            <p>
+              Documentación completa y detallada de todas las características y
+              cómo personalizarlas.
+            </p>
+            <p><strong>Tiempo:</strong> 20 minutos</p>
+            <p><strong>Dificultad:</strong> Fácil</p>
+            <div class="card-links">
+              <a
+                href="docs/FACTURACION_ELECTRONICA.md"
+                class="link-btn"
+                download
+                >📖 Leer Completa</a
+              >
+            </div>
+          </div>
+
+          <div class="card">
+            <h3><span class="emoji">🔧</span> docs/CAMBIOS_FACTURACION.md</h3>
+            <p>
+              Resumen técnico para desarrolladores. Detalles de la
+              implementación y arquitectura.
+            </p>
+            <p><strong>Tiempo:</strong> 15 minutos</p>
+            <p><strong>Dificultad:</strong> Intermedia</p>
+            <div class="card-links">
+              <a href="docs/CAMBIOS_FACTURACION.md" class="link-btn" download
+                >🔍 Ver Técnicos</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="info-box">
+          <strong>💡 Recomendación:</strong> Lee los archivos en este orden:
+          INICIO_RAPIDO.md → FACTURACION_ELECTRONICA.md → CAMBIOS_FACTURACION.md
+        </div>
+      </div>
+
+      <!-- SECCIÓN 3: INFORMACIÓN GENERAL -->
+      <div class="seccion">
+        <h2>🎯 Información General</h2>
+
+        <div
+          style="
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+          "
+        >
+          <div>
+            <h3>✨ Lo Que Incluye</h3>
+            <ul class="lista">
+              <li>
+                <span class="lista-icon">✅</span> Factura profesional
+                automatizada
+              </li>
+              <li>
+                <span class="lista-icon">✅</span> Número único por factura
+              </li>
+              <li><span class="lista-icon">✅</span> Código QR escaneable</li>
+              <li>
+                <span class="lista-icon">✅</span> Historial de compras local
+              </li>
+              <li>
+                <span class="lista-icon">✅</span> Optimizado para impresión A4
+              </li>
+              <li><span class="lista-icon">✅</span> Guardar como PDF</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3>🔄 Cómo Funciona</h3>
+            <ul class="lista">
+              <li>
+                <span class="lista-icon">1️⃣</span> Cliente agrega productos
+              </li>
+              <li><span class="lista-icon">2️⃣</span> Abre su carrito</li>
+              <li>
+                <span class="lista-icon">3️⃣</span> Presiona "Proceder a Pagar"
+              </li>
+              <li>
+                <span class="lista-icon">4️⃣</span> Se abre factura
+                automáticamente
+              </li>
+              <li>
+                <span class="lista-icon">5️⃣</span> Imprime o guarda como PDF
+              </li>
+              <li><span class="lista-icon">✅</span> ¡Compra completada!</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3>🔐 Características de Seguridad</h3>
+            <ul class="lista">
+              <li>
+                <span class="lista-icon">🔒</span> XSS Prevention incluida
+              </li>
+              <li><span class="lista-icon">🔒</span> Validación de datos</li>
+              <li>
+                <span class="lista-icon">🔒</span> localStorage local (sin
+                servidor)
+              </li>
+              <li><span class="lista-icon">🔒</span> Datos no se transmiten</li>
+              <li><span class="lista-icon">🔒</span> Privado y seguro</li>
+              <li>
+                <span class="lista-icon">ℹ️</span> Requiere validación servidor
+                en producción
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECCIÓN 4: PERSONALIZACIÓN -->
+      <div class="seccion">
+        <h2>🎨 Personalización (Muy Importante)</h2>
+
+        <div class="info-box">
+          <strong>⚠️ ANTES DE USAR EN PRODUCCIÓN:</strong> Debes cambiar los
+          datos de tu tienda en facturacion.js
+        </div>
+
+        <h3 style="margin-top: 0; color: #333">5 Minutos para Personalizar:</h3>
+
+        <ol style="padding-left: 20px; color: #666; line-height: 2.2">
+          <li>
+            <strong>Abre:</strong> facturacion.js (con tu editor de código)
+          </li>
+          <li><strong>Busca:</strong> "GLAMOUR NYM" (Ctrl+F)</li>
+          <li>
+            <strong>Reemplaza:</strong>
+            <ul style="margin-top: 10px">
+              <li>Nombre de tienda</li>
+              <li>Dirección completa</li>
+              <li>Teléfono</li>
+              <li>Email</li>
+              <li>NIT</li>
+            </ul>
+          </li>
+          <li><strong>Guarda:</strong> Presiona Ctrl+S</li>
+          <li><strong>Recarga:</strong> El navegador (Ctrl+F5)</li>
+        </ol>
+
+        <div class="info-box" style="margin-top: 20px">
+          <strong>💡 Opcionalmente también puedes cambiar:</strong>
+          <ul style="margin: 10px 0 0 0; padding-left: 20px">
+            <li>Política de envío (función calcularEnvio())</li>
+            <li>Colores de la factura</li>
+            <li>Mensaje de agradecimiento</li>
+            <li>Estructura de la factura HTML/CSS</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- SECCIÓN 5: RECURSOS RÁPIDOS -->
+      <div class="seccion">
+        <h2>🚀 Recursos Rápidos</h2>
+
+        <div class="grid">
+          <div class="card">
+            <h3><span class="emoji">🎯</span> Centro de Control</h3>
+            <p>
+              Panel visual con acceso rápido a todas las herramientas y
+              documentación.
+            </p>
+            <div class="card-links">
+              <a href="centro-control.html" class="link-btn">Abrir Centro</a>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3><span class="emoji">📊</span> PROXIMOS_PASOS.md</h3>
+            <p>Guía paso a paso de qué hacer ahora que está instalado.</p>
+            <div class="card-links">
+              <a href="PROXIMOS_PASOS.md" class="link-btn" download
+                >Descargar</a
+              >
+            </div>
+          </div>
+
+          <div class="card">
+            <h3><span class="emoji">📋</span> GUIA_RAPIDA.txt</h3>
+            <p>Resumen en texto plano fácil de consultar.</p>
+            <div class="card-links">
+              <a href="GUIA_RAPIDA.txt" class="link-btn" download>Descargar</a>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3><span class="emoji">🎬</span> Tu Tienda</h3>
+            <p>Accede a tu tienda GLAMOUR NYM:</p>
+            <div class="card-links">
+              <a href="index.html" class="link-btn terciario">Inicio</a>
+              <a href="catalogo.html" class="link-btn terciario">Catálogo</a>
+              <a href="carrito.html" class="link-btn terciario">Carrito</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECCIÓN 6: SOPORTE -->
+      <div class="seccion">
+        <h2>🆘 Soporte y Troubleshooting</h2>
+
+        <div
+          style="
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+          "
+        >
+          <div
+            style="
+              background: #ffebee;
+              padding: 15px;
+              border-radius: 6px;
+              border-left: 4px solid #e74c3c;
+            "
+          >
+            <h4 style="color: #c0392b; margin-top: 0">
+              ❌ No se abre la ventana de factura
+            </h4>
+            <p style="margin: 0; color: #666">
+              Desactiva tu bloqueador de popups para este sitio web.
+            </p>
+          </div>
+
+          <div
+            style="
+              background: #e3f2fd;
+              padding: 15px;
+              border-radius: 6px;
+              border-left: 4px solid #3498db;
+            "
+          >
+            <h4 style="color: #2980b9; margin-top: 0">
+              ❌ Error: generarFactura no está definida
+            </h4>
+            <p style="margin: 0; color: #666">
+              Verifica que facturacion.js esté en la carpeta raíz del proyecto.
+            </p>
+          </div>
+
+          <div
+            style="
+              background: #fff3e0;
+              padding: 15px;
+              border-radius: 6px;
+              border-left: 4px solid #f39c12;
+            "
+          >
+            <h4 style="color: #d68910; margin-top: 0">
+              ❌ localStorage está lleno
+            </h4>
+            <p style="margin: 0; color: #666">
+              En test-facturacion.html presiona "Limpiar Datos" o ejecuta
+              limpiarFacturasAntiguas() en consola.
+            </p>
+          </div>
+
+          <div
+            style="
+              background: #e8f5e9;
+              padding: 15px;
+              border-radius: 6px;
+              border-left: 4px solid #27ae60;
+            "
+          >
+            <h4 style="color: #229954; margin-top: 0">
+              ❌ ¿Cómo cambio datos de mi tienda?
+            </h4>
+            <p style="margin: 0; color: #666">
+              Abre facturacion.js, busca "GLAMOUR NYM" y reemplaza con tus
+              datos.
+            </p>
+          </div>
+
+          <div
+            style="
+              background: #f3e5f5;
+              padding: 15px;
+              border-radius: 6px;
+              border-left: 4px solid #9b59b6;
+            "
+          >
+            <h4 style="color: #7d3c98; margin-top: 0">
+              ❌ No veo el diálogo de impresión
+            </h4>
+            <p style="margin: 0; color: #666">
+              Presiona Ctrl+P manualmente cuando se abra la nueva ventana.
+            </p>
+          </div>
+
+          <div
+            style="
+              background: #fce4ec;
+              padding: 15px;
+              border-radius: 6px;
+              border-left: 4px solid #e91e63;
+            "
+          >
+            <h4 style="color: #c2185b; margin-top: 0">❌ Otros problemas</h4>
+            <p style="margin: 0; color: #666">
+              Abre la consola (F12), busca mensajes de error rojo y lee
+              FACTURACION_ELECTRONICA.md
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FOOTER -->
+      <footer>
+        <p style="margin-bottom: 10px">
+          <strong>✅ Sistema Implementado:</strong> 19 de noviembre, 2025
+        </p>
+        <p style="margin-bottom: 10px">
+          <strong>Estado:</strong> Listo para usar en producción
+        </p>
+        <p style="margin-bottom: 10px">
+          <strong>Versión:</strong> 1.0 - Estable
+        </p>
+        <p>&copy; 2025 GLAMOUR NYM. Todos los derechos reservados.</p>
+      </footer>
+    </div>
+  </body>
+</html>
